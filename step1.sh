@@ -29,8 +29,9 @@ echo "Installing ssh keys..."
 mkdir ~/.ssh
 echo $ssh_key >> ~/.ssh/authorized_keys
 
-runuser -l  $deploy_user -c 'mkdir ~/.ssh'
-runuser -l  $deploy_user -c 'echo $ssh_key >> ~/.ssh/authorized_keys'
+mkdir /home/$deploy_user/.ssh
+echo $ssh_key >> /home/$deploy_user/.ssh/authorized_keys
+chown -R $deploy_user:$deploy_user /home/$deploy_user/.ssh/
 
 echo "Creating role and db in postgres..."
 
