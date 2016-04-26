@@ -26,7 +26,10 @@ adduser $deploy_user sudo
 
 echo "Installing ssh keys..."
 
+mkdir ~/.ssh
 echo $ssh_key >> ~/.ssh/authorized_keys
+
+runuser -l  $deploy_user -c 'mkdir ~/.ssh'
 runuser -l  $deploy_user -c 'echo $ssh_key >> ~/.ssh/authorized_keys'
 
 echo "Creating role and db in postgres..."
