@@ -24,10 +24,9 @@ rvm install 2.3.0
 rvm use 2.3.0 --default
 rvm rubygems current
 
-echo "Installing gems..."
+echo "Installing bundler..."
 
-gem install rails bundler paperclip puma
-gem install pg -- --with-pg-config=/usr/bin/pg_config
+gem install bundler
 
 echo "Preparing SSH..."
 
