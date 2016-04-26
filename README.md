@@ -7,8 +7,8 @@ On a fresh machine:
 
 1. SSH as root
 2. ```apt-get install curl```
-3. ```\curl -sSL https://raw.githubusercontent.com/yurijmi/deploy_rails/master/step1.sh | bash -s```
+3. ```bash <(curl -s https://raw.githubusercontent.com/yurijmi/deploy_rails/master/step1.sh)```
 4. Follow the script
 5. SSH as deploy or whatever you've chosen
-6. ```\curl -sSL https://raw.githubusercontent.com/yurijmi/deploy_rails/master/step2.sh | bash -s```
+6. ```bash <(curl -s https://raw.githubusercontent.com/yurijmi/deploy_rails/master/step2.sh)```
 7. You're awesome and good to go!
