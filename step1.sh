@@ -21,7 +21,7 @@ apt-get install sudo git-core curl wget nginx postgresql postgresql-server-dev-9
 
 echo "Adding a deploy account..."
 
-useradd -m -p $(echo $deploy_password | openssl passwd -1 -stdin) $deploy_user
+useradd -m -s /bin/bash -p $(echo $deploy_password | openssl passwd -1 -stdin) $deploy_user
 adduser $deploy_user sudo
 
 echo "Installing ssh keys..."
