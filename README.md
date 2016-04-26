@@ -18,4 +18,5 @@ On a fresh machine:
 Don't forget to change your environmental variables in ```secrets.yml``` and ```database.yml```.
 
 ```<%= ENV.fetch('http_%APP_NAME%_database_password') %>``` for ```database.yml```
+
 ```<%= ENV.fetch('http_%APP_NAME%_secret_key_base') %>``` for ```secrets.yml```
