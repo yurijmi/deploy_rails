@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "Welcome to Deploy Rails!\n"
 
 if [ "$(id -u)" == "0" ]; then
