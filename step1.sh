@@ -30,7 +30,11 @@ runas -l  $deploy_user -c 'echo $ssh_key >> ~/.ssh/authorized_keys'
 
 echo "Creating role and db in postgres..."
 
-sudo -u postgres -H -- psql -c "create user $app_name with password '$deploy_password'; create database ${app_name}_production owner $app_name;"
+database_password=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};)
+
+sudo -u postgres -H -- psql -c "create user $app_name with password '$database_password'; create database ${app_name}_production owner $app_name;"
+
+sed -i '1s/^/export http_${app_name}_database_password=${database_password}\n/' /home/$deploy_user/.bashrc
 
 echo "Creating directory for deploy..."
 
