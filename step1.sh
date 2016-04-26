@@ -63,6 +63,10 @@ curl -o /etc/postgresql/9.4/main/pg_hba.conf https://raw.githubusercontent.com/y
 chown postgres:postgres /etc/postgresql/9.4/main/pg_hba.conf
 service postgresql restart
 
+echo "Touching LSB release for Puma Jungle..."
+
+touch /etc/lsb-release
+
 echo "Run this as $deploy_user: bash <(curl -s https://raw.githubusercontent.com/yurijmi/deploy_rails/master/step2.sh)"
 
 exit
