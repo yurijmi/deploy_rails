@@ -36,7 +36,8 @@ ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa -q -N ""
 
 echo "Setting environment variables..."
 
-secret_key=$(rake secret)
+curl -o /tmp/secret.rb https://raw.githubusercontent.com/yurijmi/deploy_rails/master/secret.rb
+secret_key=$(ruby secret.rb)
 
 sed -i "1s/^/export http_${app_name}_secret_key_base=${secret_key}\n/" ~/.bashrc
 
