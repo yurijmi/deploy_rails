@@ -49,11 +49,12 @@ rm /etc/nginx/sites-enabled/default
 service nginx restart
 
 rm /etc/ssh/sshd_config
-wget https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/sshd_config /etc/ssh/sshd_config
+curl -o /etc/ssh/sshd_config https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/sshd_config
 service ssh restart
 
 rm /etc/postgresql/9.4/main/pg_hba.conf
-wget https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
+curl -o /etc/postgresql/9.4/main/pg_hba.conf https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/pg_hba.conf
+chown postgres:postgres /etc/postgresql/9.4/main/pg_hba.conf
 service postgresql restart
 
 echo "Run this as $deploy_user: bash <(curl -s https://raw.githubusercontent.com/yurijmi/deploy_rails/master/step2.sh)"

@@ -18,7 +18,7 @@ rvm requirements
 
 echo "Installing ruby..."
 
-wget https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/.gemrc ~/.gemrc
+curl -o ~/.gemrc https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/.gemrc
 
 rvm install 2.3.0
 rvm use 2.3.0 --default
