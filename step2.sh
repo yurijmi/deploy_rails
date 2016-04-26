@@ -6,6 +6,8 @@ if [ "$(id -u)" == "0" ]; then
    exit 1
 fi
 
+read -p "Your app's name in deploy.rb: " app_name
+
 echo "Installing rvm..."
 
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
@@ -31,8 +33,14 @@ echo "Preparing SSH..."
 ssh -T git@github.com
 ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa -q -N ""
 
+echo "Setting environment variables..."
+
+secret_key=$(rake secret)
+
+sed -i '1s/^/export http_${app_name}_secret_key_base=${secret_key}\n/' ~/.bashrc
+
 echo "Copy this to GitHub:"
-cat /home/$deploy_user/.ssh/id_rsa.pub
+cat ~/.ssh/id_rsa.pub
 
 echo "Deploy 'em now ;)"
 
