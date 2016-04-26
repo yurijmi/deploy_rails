@@ -1,5 +1,6 @@
 #!/bin/bash
-echo "Welcome to Deploy Rails!\n"
+echo "Welcome to Deploy Rails!"
+echo ""
 
 if [ "$(id -u)" == "0" ]; then
    echo "This script must be run as deploy" 1>&2

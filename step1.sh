@@ -1,5 +1,6 @@
 #!/bin/bash
-echo "Welcome to Deploy Rails!\n"
+echo "Welcome to Deploy Rails!"
+echo ""
 
 if [ "$(id -u)" != "0" ]; then
    echo "This script must be run as root" 1>&2
@@ -55,6 +56,6 @@ rm /etc/postgresql/9.4/main/pg_hba.conf
 wget https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
 service postgresql restart
 
-echo "Run this as $deploy_user: \curl -sSL https://raw.githubusercontent.com/yurijmi/deploy_rails/master/step2.sh | bash -s"
+echo "Run this as $deploy_user: bash <(curl -s https://raw.githubusercontent.com/yurijmi/deploy_rails/master/step2.sh)"
 
 exit
