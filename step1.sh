@@ -40,7 +40,7 @@ cd /etc/postgresql/9.4/main
 sudo -u postgres -H -- psql -c "create user $app_name with password '$database_password';"
 sudo -u postgres -H -- psql -c "create database ${app_name}_production owner $app_name;"
 
-sed -i '1s/^/export http_${app_name}_database_password=${database_password}\n/' /home/$deploy_user/.bashrc
+sed -i "1s/^/export http_${app_name}_database_password=${database_password}\n/" /home/$deploy_user/.bashrc
 
 echo "Creating directory for deploy..."
 

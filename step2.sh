@@ -38,7 +38,7 @@ echo "Setting environment variables..."
 
 secret_key=$(rake secret)
 
-sed -i '1s/^/export http_${app_name}_secret_key_base=${secret_key}\n/' ~/.bashrc
+sed -i "1s/^/export http_${app_name}_secret_key_base=${secret_key}\n/" ~/.bashrc
 
 echo "Copy this to GitHub:"
 cat ~/.ssh/id_rsa.pub
