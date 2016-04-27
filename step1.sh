@@ -52,16 +52,16 @@ echo "Updating configs..."
 
 rm /etc/nginx/sites-available/default
 rm /etc/nginx/sites-enabled/default
-service nginx restart
+systemctl restart nginx
 
 rm /etc/ssh/sshd_config
 curl -o /etc/ssh/sshd_config https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/sshd_config
-service ssh restart
+systemctl restart ssh
 
 rm /etc/postgresql/9.4/main/pg_hba.conf
 curl -o /etc/postgresql/9.4/main/pg_hba.conf https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/pg_hba.conf
 chown postgres:postgres /etc/postgresql/9.4/main/pg_hba.conf
-service postgresql restart
+systemctl restart postgresql
 
 echo "Touching LSB release for Puma Jungle..."
 
