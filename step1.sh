@@ -67,6 +67,7 @@ systemctl restart postgresql
 
 rm /etc/monit/monitrc
 curl -o /etc/monit/monitrc https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/monitrc
+chmod 700 /etc/monit/monitrc
 systemctl restart monit
 
 echo "Touching LSB release for Puma Jungle..."
