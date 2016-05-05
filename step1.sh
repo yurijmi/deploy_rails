@@ -28,10 +28,11 @@ adduser $deploy_user sudo
 
 echo "Installing ssh keys..."
 
-mkdir ~/.ssh
+mkdir -p ~/.ssh
+rm ~/.ssh/authorized_keys
 echo $ssh_key >> ~/.ssh/authorized_keys
 
-mkdir /home/$deploy_user/.ssh
+mkdir -p /home/$deploy_user/.ssh
 echo $ssh_key >> /home/$deploy_user/.ssh/authorized_keys
 chown -R $deploy_user:$deploy_user /home/$deploy_user/.ssh/
 
@@ -47,7 +48,7 @@ sed -i "1s/^/export http_${app_name}_database_password=${database_password}\n/" 
 
 echo "Creating directory for deploy..."
 
-mkdir /var/www/$app_name
+mkdir -p /var/www/$app_name
 chown $deploy_user:$deploy_user /var/www/$app_name
 
 echo "Updating configs..."
