@@ -9,6 +9,9 @@ fi
 
 read -p "Your app's name in deploy.rb: " app_name
 
+read -p "This server's environment (production):" environment
+environment=${environment:-production}
+
 read -p "Account for deploy (deploy): " deploy_user
 deploy_user=${deploy_user:-deploy}
 
@@ -42,8 +45,9 @@ database_password=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};)
 
 cd /etc/postgresql/9.4/main
 sudo -u postgres -H -- psql -c "create user $app_name with password '$database_password';"
-sudo -u postgres -H -- psql -c "create database ${app_name}_production owner $app_name;"
+sudo -u postgres -H -- psql -c "create database ${app_name}_${environment} owner $app_name;"
 
+sed -i "1s/^/export RAILS_ENV=${environment}\n/" /home/$deploy_user/.bashrc
 sed -i "1s/^/export http_${app_name}_database_password=${database_password}\n/" /home/$deploy_user/.bashrc
 
 echo "Creating directory for deploy..."
