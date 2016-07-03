@@ -21,8 +21,8 @@ echo "Installing ruby..."
 
 curl -o ~/.gemrc https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/.gemrc
 
-rvm install 2.3.0
-rvm use 2.3.0 --default
+rvm install 2.3.1
+rvm use 2.3.1 --default
 rvm rubygems current
 
 echo "Installing bundler..."
