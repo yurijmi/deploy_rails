@@ -22,7 +22,7 @@ read -p "Your public SSH key for login: " ssh_key
 echo "Installing software..."
 
 apt-get update
-apt-get install sudo git-core curl wget ntp ntpdate nginx postgresql postgresql-server-dev-9.4 postgresql-contrib libpq-dev imagemagick nodejs monit redis-server gawk g++ gcc make libc6-dev libreadline6-dev zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgmp-dev libgdbm-dev libncurses5-dev automake libtool bison pkg-config libffi-dev -y
+apt-get install sudo git-core curl wget ntp ntpdate nginx postgresql postgresql-server-dev-9.4 postgresql-contrib libpq-dev imagemagick nodejs monit redis-server memcached gawk g++ gcc make libc6-dev libreadline6-dev zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgmp-dev libgdbm-dev libncurses5-dev automake libtool bison pkg-config libffi-dev -y
 
 echo "Adding a deploy account..."
 
@@ -74,6 +74,10 @@ rm /etc/monit/monitrc
 curl -o /etc/monit/monitrc https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/monitrc
 chmod 700 /etc/monit/monitrc
 systemctl restart monit
+
+rm /etc/memcached.conf
+curl -o /etc/memcached.conf https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/memcached.conf
+systemctl restart memcached
 
 echo "Touching LSB release for Puma Jungle..."
 
