@@ -19,6 +19,16 @@ read -p "That account's password: " deploy_password
 
 read -p "Your public SSH key for login: " ssh_key
 
+if ! grep --quiet swap /etc/fstab; then
+  echo "Creating swap..."
+
+  dd if=/dev/zero of=/var/swap.img bs=1024k count=4000
+  chmod 0600 /var/swap.img
+  mkswap /var/swap.img
+  swapon /var/swap.img
+  echo "/var/swap.img    none    swap    sw    0    0" >> /etc/fstab
+fi
+
 echo "Installing software..."
 
 apt-get update
