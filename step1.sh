@@ -19,6 +19,12 @@ read -p "That account's password: " deploy_password
 
 read -p "Your public SSH key for login: " ssh_key
 
+echo "Setting default locale..."
+rm /etc/locale.gen
+curl -o /etc/locale.gen https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/locale.gen
+locale-gen
+echo -e 'LANG=ru_RU.UTF-8\n' > /etc/default/locale
+
 if ! grep --quiet swap /etc/fstab; then
   echo "Creating swap..."
 
