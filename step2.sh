@@ -8,6 +8,8 @@ if [ "$(id -u)" == "0" ]; then
 fi
 
 read -p "Your app's name in deploy.rb: " app_name
+read -p "Ruby version to install (2.4.1):" ruby_ver
+ruby_ver=${ruby_ver:-2.4.1}
 
 echo "Installing rvm..."
 
@@ -21,8 +23,8 @@ echo "Installing ruby..."
 
 curl -o ~/.gemrc https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/.gemrc
 
-rvm install 2.3.1
-rvm use 2.3.1 --default
+rvm install $ruby_ver
+rvm use $ruby_ver --default
 rvm rubygems current
 
 echo "Installing bundler..."
