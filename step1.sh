@@ -38,7 +38,7 @@ fi
 echo "Installing software..."
 
 apt-get update
-apt-get install sudo git-core curl wget ntp ntpdate nginx postgresql postgresql-server-dev-9.4 postgresql-contrib libpq-dev imagemagick nodejs monit redis-server memcached gawk g++ gcc make libc6-dev libreadline6-dev zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgmp-dev libgdbm-dev libncurses5-dev automake libtool bison pkg-config libffi-dev -y
+apt-get install sudo git-core curl wget ntp ntpdate nginx postgresql postgresql-server-dev-9.6 postgresql-contrib libpq-dev imagemagick nodejs monit redis-server memcached gawk g++ gcc make libc6-dev libreadline6-dev zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgmp-dev libgdbm-dev libncurses5-dev automake libtool bison pkg-config libffi-dev -y
 
 echo "Adding a deploy account..."
 
@@ -59,7 +59,7 @@ echo "Creating role and db in postgres..."
 
 database_password=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};)
 
-cd /etc/postgresql/9.4/main
+cd /etc/postgresql/9.6/main
 sudo -u postgres -H -- psql -c "create user $app_name with password '$database_password';"
 sudo -u postgres -H -- psql -c "create database ${app_name}_${environment} owner $app_name;"
 
@@ -81,9 +81,9 @@ rm /etc/ssh/sshd_config
 curl -o /etc/ssh/sshd_config https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/sshd_config
 systemctl restart ssh
 
-rm /etc/postgresql/9.4/main/pg_hba.conf
-curl -o /etc/postgresql/9.4/main/pg_hba.conf https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/pg_hba.conf
-chown postgres:postgres /etc/postgresql/9.4/main/pg_hba.conf
+rm /etc/postgresql/9.6/main/pg_hba.conf
+curl -o /etc/postgresql/9.6/main/pg_hba.conf https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/pg_hba.conf
+chown postgres:postgres /etc/postgresql/9.6/main/pg_hba.conf
 systemctl restart postgresql
 
 rm /etc/monit/monitrc
