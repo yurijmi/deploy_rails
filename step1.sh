@@ -64,6 +64,7 @@ sudo -u postgres -H -- psql -c "create user $app_name with password '$database_p
 sudo -u postgres -H -- psql -c "create database ${app_name}_${environment} owner $app_name;"
 
 sed -i "1s/^/export RAILS_ENV=${environment}\n/" /home/$deploy_user/.bashrc
+sed -i "1s/^/export NOKOGIRI_USE_SYSTEM_LIBRARIES=true\n/" /home/$deploy_user/.bashrc
 sed -i "1s/^/export http_${app_name}_database_password=${database_password}\n/" /home/$deploy_user/.bashrc
 
 echo "Creating directory for deploy..."
