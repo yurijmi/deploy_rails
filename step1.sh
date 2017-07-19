@@ -38,7 +38,7 @@ fi
 echo "Installing software..."
 
 apt-get update
-apt-get install sudo git-core curl wget ntp ntpdate nginx postgresql postgresql-server-dev-9.6 postgresql-contrib libpq-dev imagemagick nodejs monit redis-server memcached gawk g++ gcc make libc6-dev libreadline6-dev zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgmp-dev libgdbm-dev libncurses5-dev automake libtool bison pkg-config libffi-dev -y
+apt-get install sudo git-core curl wget ntp ntpdate nginx postgresql postgresql-server-dev-9.6 postgresql-contrib libpq-dev imagemagick nodejs monit redis-server memcached gawk g++ gcc make libc6-dev libreadline6-dev zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgmp-dev libgdbm-dev libncurses5-dev automake libtool bison pkg-config libffi-dev ruby-dev liblzma-dev build-essential patch libxml2-dev libxslt-dev -y
 
 echo "Adding a deploy account..."
 
