@@ -22,6 +22,7 @@ echo "rvm_trust_rvmrcs_flag=1" >> .rvmrc
 echo "Installing ruby..."
 
 curl -o ~/.gemrc https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/.gemrc
+curl -o ~/.irbrc https://raw.githubusercontent.com/yurijmi/deploy_rails/master/conf/.irbrc
 
 rvm install $ruby_ver
 rvm use $ruby_ver --default
